@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sergey Tatsiak</title>
+</head>
+<body>
+    <style>
+        #svg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+        }
+    </style>
+    <div id="svg"></div>
+    <script>        
+
+        function point(min, max){
+            min = min || -50;
+            max = max || 150;
+            return Math.random() * (max - min) + min;
+        }
+        function color() {
+            return "#"+((1<<24)*Math.random()|0).toString(16);
+        }
+
+        var options = {
+            lines: 20,
+            circles: 10,
+            triangles: 3333,
+            options: 0.3,
+            background: color(),
+        }
+        var svg = '<svg version="1.1" viewBox="0 0 100 100"';
+        svg += 'xmlns="http://www.w3.org/2000/svg"';
+        svg += 'style="background-color:' + options.background + '">';
+        for (var i = 0; i < options.lines; i++) {
+            svg += '<line stroke="' + color() + '" ';
+            svg += 'stroke-width="' + point(1, 5) + '" ';
+            svg += 'opacity="' + options.opacity + '" ';
+            svg += 'x1="' + point() + '" y1="' + point() + '" ';
+            svg += 'x2="' + point() + '" y2="' + point() + '" />';
+        }
+        for (var i = 0; i < options.circles; i++) {
+            svg += '<circle cx="' + point() + '" ';
+            svg += 'cy="' + point() + '" ';
+            svg += 'r="' + point(1, options.max_size / 2) + '" ';
+            svg += 'opacity="' + options.opacity + '" ';
+            svg += 'fill="' + color() + '"/>';
+        }
+        for (var i = 0; i < options.triangles; i++) {
+            var s = size = options.max_size;
+            svg += '<polygon fill="' + color() + '" points="';
+            svg += (x = point()) + ',' + (y = point()) + ' ';
+            svg += (x + point(-s, s)) + ',' + (y + point(-s, s)) + ' ';
+            svg += (x + point(-s, s)) + ',' + (y + point(-s, s));
+            svg += '" opacity="' + options.opacity + '" ';
+            svg += 'fill="' + color() + '"/>';
+        }
+        svg += '</svg>'
+        
+        
+        document.querySelector('#svg').innerHTML = svg
+    </script>
+</body>
+</html>
