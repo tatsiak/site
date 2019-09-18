@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sergey Tatsiak</title>
+    <script src="https://kit.fontawesome.com/0c710bd21f.js"></script>
 </head>
 <body>
     <style>
@@ -15,10 +16,45 @@
             height: 100vh;
             width: 100vw;
         }
+        .contacts {
+            display: flex;
+            width: 200px;
+            height: 150px;
+            position: absolute;
+            left: 0; 
+            right: 0;
+            top: -20%;
+            bottom: 0;
+            margin: auto; 
+            /* background-color: sandybrown; */
+            justify-content: space-around;
+            align-items: center;
+        }
+        .contacts__item {
+            width: 40px;
+            height: 40px;
+            font-size: 40px;
+            color: black;
+        }
+        .contacts__item:hover {
+            width: 45px;
+            height: 45px;
+            font-size: 45px;
+        }
     </style>
     <div id="svg"></div>
+    <div class="contacts">
+            <a href="https://www.linkedin.com/in/sergeytatsiak/" target="_blank" class="contacts__item">
+                <i class=" fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/tatsiak" target="_blank" class="contacts__item">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="mail:tatsiak@gmail.com" class="contacts__item">
+                <i class="far fa-envelope"></i>
+            </a>
+        </div>
     <script>        
-
         function point(min, max){
             min = min || -50;
             max = max || 150;
@@ -31,27 +67,15 @@
         var options = {
             lines: 20,
             circles: 10,
-            triangles: 3333,
+            triangles: 333,
             opacity: 0.3,
             background: color(),
         }
-        var svg = '<svg version="1.1" viewBox="0 0 100 100"';
+
+        function renderSVG(){
+            var svg = '<svg version="1.1" viewBox="0 0 100 100"';
         svg += 'xmlns="http://www.w3.org/2000/svg"';
         svg += 'style="background-color:' + options.background + '">';
-        for (var i = 0; i < options.lines; i++) {
-            svg += '<line stroke="' + color() + '" ';
-            svg += 'stroke-width="' + point(1, 5) + '" ';
-            svg += 'opacity="' + options.opacity + '" ';
-            svg += 'x1="' + point() + '" y1="' + point() + '" ';
-            svg += 'x2="' + point() + '" y2="' + point() + '" />';
-        }
-        for (var i = 0; i < options.circles; i++) {
-            svg += '<circle cx="' + point() + '" ';
-            svg += 'cy="' + point() + '" ';
-            svg += 'r="' + point(1, options.max_size / 2) + '" ';
-            svg += 'opacity="' + options.opacity + '" ';
-            svg += 'fill="' + color() + '"/>';
-        }
         for (var i = 0; i < options.triangles; i++) {
             var s = size = options.max_size;
             svg += '<polygon fill="' + color() + '" points="';
@@ -62,9 +86,9 @@
             svg += 'fill="' + color() + '"/>';
         }
         svg += '</svg>'
-        
-        
-        document.querySelector('#svg').innerHTML = svg
+        document.querySelector('#svg').innerHTML = svg;
+        }
+        renderSVG();
     </script>
 </body>
 </html>
