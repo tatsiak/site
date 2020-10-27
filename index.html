@@ -22,26 +22,6 @@
       margin: 0;
     }
 
-    @keyframes spin {
-      from {
-        transform: rotateZ(0deg);
-      }
-
-      to {
-        transform: rotateZ(360deg);
-      }
-    }
-
-    polygon:nth-child(33n) {
-      fill: white;
-      opacity: 0.05;
-
-      animation: spin 33s linear infinite;
-
-      transform-origin: center;
-      transform-box: fill-box;
-    }
-
     .contacts {
       display: flex;
       width: 300px;
@@ -82,7 +62,7 @@
 
     .contacts__item:hover {
       opacity: 0.9;
-      transform: scale(1.25);
+      transform: scale(1.15);
     }
   </style>
   <div id="svg"></div>
@@ -135,7 +115,7 @@
         svg += x + point(-s, s) + "," + (y + point(-s, s)) + " ";
         svg += x + point(-s, s) + "," + (y + point(-s, s));
         svg += '" opacity="' + options.opacity + '" ';
-        svg += 'fill="' + color() + '"/>';
+        svg += 'fill="' + (i % 33 === 0 ? 'white' : color()) + '"/>';
       }
       svg += "</svg>";
       document.querySelector("#svg").innerHTML = svg;
@@ -143,8 +123,8 @@
 
     renderSVG({
       triangles: 333,
-      opacity: 0.03,
-      background: "hsl(4, 6%, 81%)",
+      opacity: 0.0337,
+      background: 'lightblue',
     });
 
   </script>
